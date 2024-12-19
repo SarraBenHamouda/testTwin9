@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prix Moyen des Produits</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Connexion au serveur WebSocket
+        const socket = io();
+
+        // Écouter les mises à jour en temps réel du prix moyen
+        socket.on('averagePriceUpdated', (newAveragePrice) => {
+            console.log('Prix moyen mis à jour : ', newAveragePrice);
+            // Mettre à jour l'élément HTML avec la nouvelle valeur
+            document.getElementById('average-price').textContent = newAveragePrice.toFixed(2) + ' TND';
+        });
+    </script>
+</head>
+<body>
+    <h1>Prix Moyen des Produits</h1>
+    <p>Le prix moyen actuel est : <span id="average-price">Chargement...</span></p>
+</body>
+</html>
